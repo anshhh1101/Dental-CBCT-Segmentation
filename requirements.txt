@@ -1,0 +1,27 @@
+# Core ML & medical imaging
+torch>=2.1.0
+torchvision>=0.16.0
+monai[all]>=1.3.0
+SimpleITK>=2.3.0
+nibabel>=5.1.0
+
+# Scientific computing
+numpy>=1.24.0
+scipy>=1.11.0
+scikit-image>=0.22.0
+
+# Visualisation
+plotly>=5.17.0
+matplotlib>=3.8.0
+kaleido>=0.2.1         # Plotly static export
+
+# Config & logging
+pyyaml>=6.0.1
+tqdm>=4.66.0
+
+# TensorBoard
+tensorboard>=2.15.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0

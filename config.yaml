@@ -1,0 +1,79 @@
+project:
+  name: dental_segmentation
+  seed: 42
+  device: auto  # auto, cpu, cuda, mps
+
+dataset:
+  name: "ToothFairy2"  # ToothFairy2 | MMDental | custom
+  root: "data/raw"
+  processed: "data/processed"
+  splits_dir: "data/splits"
+  # Train/val/test ratios
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+  # Patch-based training (CBCT volumes are large)
+  patch_size: [64, 64, 64]
+  num_patches_per_volume: 8
+
+preprocessing:
+  target_spacing: [0.4, 0.4, 0.4]   # mm, isotropic resampling
+  clip_hu: [-1000, 3000]             # HU range for dental CT
+  normalize: "z_score"               # z_score | min_max
+  foreground_crop: true
+  cache_rate: 1.0                    # fraction of dataset to cache in RAM
+
+augmentation:
+  enabled: true
+  rand_flip_prob: 0.5
+  rand_rotate_prob: 0.3
+  rand_scale_range: [0.9, 1.1]
+  rand_shift_range: [-0.1, 0.1]
+  rand_brightness_prob: 0.3
+  gaussian_noise_prob: 0.2
+
+model:
+  architecture: "SegResNet"          # SegResNet | UNet3D | SwinUNETR
+  in_channels: 1
+  out_channels: 2                    # background + target class
+  init_filters: 16
+  dropout_prob: 0.2
+  # UNet3D specific
+  channels: [16, 32, 64, 128, 256]
+  strides:  [2,  2,  2,  2]
+
+training:
+  epochs: 200
+  batch_size: 2
+  learning_rate: 1.0e-4
+  weight_decay: 1.0e-5
+  scheduler: "cosine"                # cosine | step | plateau
+  warmup_epochs: 10
+  loss: "dice_ce"                    # dice | ce | dice_ce | focal
+  dice_ce_lambda_dice: 0.5
+  dice_ce_lambda_ce: 0.5
+  val_interval: 5
+  save_best_only: true
+  early_stopping_patience: 30
+  amp: true                          # automatic mixed precision
+  gradient_clip: 1.0
+
+postprocessing:
+  remove_small_objects: true
+  min_object_size_voxels: 50
+  fill_holes: true
+  closing_iterations: 2
+  smooth_predictions: true
+  confidence_threshold: 0.5
+
+visualization:
+  slice_step: 4                      # every Nth slice for quick 3D
+  opacity_overlay: 0.4
+  colormap_pred: "hot"
+  output_format: "html"              # html | png
+
+paths:
+  checkpoints: "outputs/checkpoints"
+  predictions: "outputs/predictions"
+  visualizations: "outputs/visualizations"
+  logs: "outputs/logs"
