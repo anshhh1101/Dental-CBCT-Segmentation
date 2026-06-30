@@ -1,0 +1,101 @@
+
+#######################################################################
+Please cite the following paper when using nnU-Net:
+Isensee, F., Jaeger, P. F., Kohl, S. A., Petersen, J., & Maier-Hein, K. H. (2021). nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation. Nature methods, 18(2), 203-211.
+#######################################################################
+ 
+2026-06-30 07:48:16.655671: do_dummy_2d_data_aug: False 
+2026-06-30 07:48:16.656170: Using splits from existing split file: /content/nnunet_preprocessed/Dataset500_DentalFineTune/splits_final.json 
+2026-06-30 07:48:16.656482: The split file contains 5 splits. 
+2026-06-30 07:48:16.656619: Desired fold for training: 0 
+2026-06-30 07:48:16.656737: This split has 11 training and 3 validation cases. 
+
+This is the configuration used by this training:
+Configuration name: 3d_fullres
+ {'data_identifier': 'nnUNetPlans_3d_fullres', 'preprocessor_name': 'DefaultPreprocessor', 'batch_size': 2, 'patch_size': [96, 160, 128], 'median_image_size_in_voxels': [272.0, 410.0, 410.0], 'spacing': [0.3, 0.3, 0.3], 'normalization_schemes': ['CTNormalization'], 'use_mask_for_norm': [False], 'resampling_fn_data': 'resample_data_or_seg_to_shape', 'resampling_fn_seg': 'resample_data_or_seg_to_shape', 'resampling_fn_data_kwargs': {'is_seg': False, 'order': 3, 'order_z': 0, 'force_separate_z': None}, 'resampling_fn_seg_kwargs': {'is_seg': True, 'order': 1, 'order_z': 0, 'force_separate_z': None}, 'resampling_fn_probabilities': 'resample_data_or_seg_to_shape', 'resampling_fn_probabilities_kwargs': {'is_seg': False, 'order': 1, 'order_z': 0, 'force_separate_z': None}, 'architecture': {'network_class_name': 'dynamic_network_architectures.architectures.unet.PlainConvUNet', 'arch_kwargs': {'n_stages': 6, 'features_per_stage': [32, 64, 128, 256, 320, 320], 'conv_op': 'torch.nn.modules.conv.Conv3d', 'kernel_sizes': [[3, 3, 3], [3, 3, 3], [3, 3, 3], [3, 3, 3], [3, 3, 3], [3, 3, 3]], 'strides': [[1, 1, 1], [2, 2, 2], [2, 2, 2], [2, 2, 2], [2, 2, 2], [1, 2, 2]], 'n_conv_per_stage': [2, 2, 2, 2, 2, 2], 'n_conv_per_stage_decoder': [2, 2, 2, 2, 2], 'conv_bias': True, 'norm_op': 'torch.nn.modules.instancenorm.InstanceNorm3d', 'norm_op_kwargs': {'eps': 1e-05, 'affine': True}, 'dropout_op': None, 'dropout_op_kwargs': None, 'nonlin': 'torch.nn.LeakyReLU', 'nonlin_kwargs': {'inplace': True}}, '_kw_requires_import': ['conv_op', 'norm_op', 'dropout_op', 'nonlin']}, 'batch_dice': True} 
+ 
+These are the global plan.json settings:
+ {'dataset_name': 'Dataset500_DentalFineTune', 'plans_name': 'nnUNetPlans', 'original_median_spacing_after_transp': [0.3, 0.3, 0.3], 'original_median_shape_after_transp': [272, 410, 410], 'image_reader_writer': 'SimpleITKIO', 'transpose_forward': [0, 1, 2], 'transpose_backward': [0, 1, 2], 'experiment_planner_used': 'ExperimentPlanner', 'label_manager': 'LabelManager', 'foreground_intensity_properties_per_channel': {'0': {'max': 4311.0, 'mean': 554.3470458984375, 'median': 558.473388671875, 'min': -1000.0, 'percentile_00_5': -1000.0, 'percentile_99_5': 3451.99462890625, 'std': 1002.0491943359375}}} 
+ 
+2026-06-30 07:48:18.196741: Unable to plot network architecture: 
+2026-06-30 07:48:18.197055: No module named 'hiddenlayer' 
+2026-06-30 07:48:18.207844:  
+2026-06-30 07:48:18.208142: Epoch 0 
+2026-06-30 07:48:18.208448: Current learning rate: 0.01 
+2026-06-30 07:58:57.229007: train_loss 0.7556 
+2026-06-30 07:58:57.229507: val_loss 0.4796 
+2026-06-30 07:58:57.230171: Pseudo dice [np.float32(0.4175), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.5868), np.float32(0.0), np.float32(0.2924), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0)] 
+2026-06-30 07:58:57.230665: Epoch time: 639.02 s 
+2026-06-30 07:58:57.230884: Yayy! New best EMA pseudo Dice: 0.030899999663233757 
+2026-06-30 07:59:08.234177:  
+2026-06-30 07:59:08.235781: Epoch 1 
+2026-06-30 07:59:08.236294: Current learning rate: 0.0091 
+2026-06-30 08:08:40.893660: train_loss 0.41 
+2026-06-30 08:08:40.894728: val_loss 0.5109 
+2026-06-30 08:08:40.901825: Pseudo dice [np.float32(0.4396), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.3305), np.float32(0.0), np.float32(0.0066), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0)] 
+2026-06-30 08:08:40.902932: Epoch time: 572.67 s 
+2026-06-30 08:08:44.810615:  
+2026-06-30 08:08:44.812513: Epoch 2 
+2026-06-30 08:08:44.812755: Current learning rate: 0.00818 
+2026-06-30 08:18:56.502115: train_loss 0.3756 
+2026-06-30 08:18:56.502629: val_loss 0.4503 
+2026-06-30 08:18:56.503285: Pseudo dice [np.float32(0.5117), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.1526), np.float32(0.0), np.float32(0.2189), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0)] 
+2026-06-30 08:18:56.503604: Epoch time: 611.69 s 
+2026-06-30 08:19:01.796271:  
+2026-06-30 08:19:01.797290: Epoch 3 
+2026-06-30 08:19:01.797539: Current learning rate: 0.00725 
+2026-06-30 08:29:43.236180: train_loss 0.3553 
+2026-06-30 08:29:43.236696: val_loss 0.4625 
+2026-06-30 08:29:43.239399: Pseudo dice [np.float32(0.4858), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.3512), np.float32(0.0), np.float32(0.0885), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0)] 
+2026-06-30 08:29:43.243680: Epoch time: 641.44 s 
+2026-06-30 08:29:48.056673:  
+2026-06-30 08:29:48.058673: Epoch 4 
+2026-06-30 08:29:48.058954: Current learning rate: 0.00631 
+2026-06-30 08:38:50.253803: train_loss 0.3401 
+2026-06-30 08:38:50.255873: val_loss 0.3723 
+2026-06-30 08:38:50.258299: Pseudo dice [np.float32(0.5261), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.3812), np.float32(0.0), np.float32(0.2464), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0)] 
+2026-06-30 08:38:50.262389: Epoch time: 542.2 s 
+2026-06-30 08:38:54.524310:  
+2026-06-30 08:38:54.524670: Epoch 5 
+2026-06-30 08:38:54.524920: Current learning rate: 0.00536 
+2026-06-30 08:50:04.616482: train_loss 0.3234 
+2026-06-30 08:50:04.616944: val_loss 0.3995 
+2026-06-30 08:50:04.622630: Pseudo dice [np.float32(0.5546), np.float32(0.1435), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.3414), np.float32(0.0), np.float32(0.2157), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0)] 
+2026-06-30 08:50:04.622991: Epoch time: 670.09 s 
+2026-06-30 08:50:08.683117:  
+2026-06-30 08:50:08.685544: Epoch 6 
+2026-06-30 08:50:08.685770: Current learning rate: 0.00438 
+2026-06-30 08:59:39.182430: train_loss 0.295 
+2026-06-30 08:59:39.186399: val_loss 0.3655 
+2026-06-30 08:59:39.187122: Pseudo dice [np.float32(0.6166), np.float32(0.1635), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.2426), np.float32(0.0), np.float32(0.3362), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0)] 
+2026-06-30 08:59:39.190615: Epoch time: 570.5 s 
+2026-06-30 08:59:43.028522:  
+2026-06-30 08:59:43.028871: Epoch 7 
+2026-06-30 08:59:43.029086: Current learning rate: 0.00338 
+2026-06-30 09:09:34.232014: train_loss 0.2685 
+2026-06-30 09:09:34.232542: val_loss 0.3301 
+2026-06-30 09:09:34.233457: Pseudo dice [np.float32(0.6773), np.float32(0.2656), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.6804), np.float32(0.0), np.float32(0.1628), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0)] 
+2026-06-30 09:09:34.235381: Epoch time: 591.21 s 
+2026-06-30 09:09:37.078501:  
+2026-06-30 09:09:37.080864: Epoch 8 
+2026-06-30 09:09:37.081107: Current learning rate: 0.00235 
+2026-06-30 09:20:04.129525: train_loss 0.2721 
+2026-06-30 09:20:04.129973: val_loss 0.2983 
+2026-06-30 09:20:04.130613: Pseudo dice [np.float32(0.7186), np.float32(0.4463), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.563), np.float32(0.0), np.float32(0.261), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0)] 
+2026-06-30 09:20:04.131760: Epoch time: 627.05 s 
+2026-06-30 09:20:04.131964: Yayy! New best EMA pseudo Dice: 0.03180000185966492 
+2026-06-30 09:20:14.406154:  
+2026-06-30 09:20:14.408553: Epoch 9 
+2026-06-30 09:20:14.408797: Current learning rate: 0.00126 
+2026-06-30 09:30:14.181646: train_loss 0.246 
+2026-06-30 09:30:14.184403: val_loss 0.2684 
+2026-06-30 09:30:14.185050: Pseudo dice [np.float32(0.6759), np.float32(0.4053), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.7875), np.float32(0.0), np.float32(0.3383), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0), np.float32(0.0)] 
+2026-06-30 09:30:14.185422: Epoch time: 599.78 s 
+2026-06-30 09:30:14.185648: Yayy! New best EMA pseudo Dice: 0.033799998462200165 
+2026-06-30 09:30:33.540465: Training done. 
+2026-06-30 09:30:33.588676: Using splits from existing split file: /content/nnunet_preprocessed/Dataset500_DentalFineTune/splits_final.json 
+2026-06-30 09:30:33.589062: The split file contains 5 splits. 
+2026-06-30 09:30:33.589282: Desired fold for training: 0 
+2026-06-30 09:30:33.589442: This split has 11 training and 3 validation cases. 
+2026-06-30 09:30:33.589645: predicting case_000 
+2026-06-30 09:30:35.438786: case_000, shape torch.Size([1, 262, 512, 512]), rank 0 
