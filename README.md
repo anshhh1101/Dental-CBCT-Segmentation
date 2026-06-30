@@ -1,5 +1,16 @@
 # 🦷 Dental CBCT Segmentation Pipeline
 
+## Latest Update (June 30, 2026)
+
+See `Dobbe_AI_Dental_Segmentation_Report.docx` for the full fine-tuning report, covering:
+- Dataset preparation and FDI-to-consecutive label remapping (42 classes)
+- A documented architecture-incompatibility finding when attempting transfer 
+  learning from the pretrained DentalSegmentator backbone
+- 10-epoch from-scratch training results (`training_log_2026_6_30_07_48_15.txt`)
+- A 3D marching-cubes visualization of ground-truth segmentation (`newplot.png`)
+- An honest account of test-set evaluation being blocked by Google Colab 
+  free-tier compute limits, with next steps for completing it
+
 End-to-end machine learning pipeline for dental structure segmentation on 3-D CBCT volumes.  
 Targets: **dental restorations** (fillings, crowns, bridges, implants) using **SegResNet** trained with MONAI.  
 Validated on synthetic CBCT data (ToothFairy2 was unavailable via Zenodo at evaluation time).
